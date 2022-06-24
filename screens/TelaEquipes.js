@@ -11,62 +11,61 @@ export default class TelaEquipes extends React.Component
 
   render()
   {
-    return
-    (
+    return /* não estava aceitando o ( do return na linha de baixo */ (
       <View> 
         <AppHeader/>
         <TouchableOpacity
-          style={[styles.button, {backgroundColor: 'rgb(0, 100, 150)'}]}
-          onPress={()=>this.irPraTelaBotao('rgb(0, 100, 150')}>
+          style={[styles.button, {backgroundColor: 'blue'}]}
+          onPress={()=>this.irPraTelaBotao('blue')}>
           <Text style={styles.buttonText}>
-            Equipe azul
+            Equipe Azul
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.button, {backgroundColor: 'rgb(200, 20, 20)'}]}
-          onPress={()=>this.irPraTelaBotao('rgb(200, 20, 20)')}>
+          style={[styles.button, {backgroundColor: 'red'}]}
+          onPress={()=>this.irPraTelaBotao('red')}>
           <Text style={styles.buttonText}>
-            Equipe vermelha
+            Equipe Vermelha
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.button, {backgroundColor: 'rgb(0, 200, 80)'}]}
-          onPress={()=>this.irPraTelaBotao('rgb(0, 200, 80)')}>
+          style={[styles.button, {backgroundColor: 'green'}]}
+          onPress={()=>this.irPraTelaBotao('green')}>
           <Text style={styles.buttonText}>
-            Equipe verde
+            Equipe Verde
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.button, {backgroundColor: 'rgb(180, 250, 130)'}]}
-          onPress={()=>this.irPraTelaBotao('rgb(180, 250, 130)')}>
+          style={[styles.button, {backgroundColor: 'yellow'}]}
+          onPress={()=>this.irPraTelaBotao('yellow')}>
           <Text style={styles.buttonText}>
-            Equipe amarela
+            Equipe Amarela
           </Text>
         </TouchableOpacity>
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 200,
+    marginTop: 65,
     marginLeft: 75,
-    borderWidth: 7,
-    borderColor: 'rgb(180, 20, 20)',
+    borderWidth: 3,
+    borderColor: 'rgb()128, 128, 128',
     alignItems: 'center',
     justifyContent: 'center',
     width: 200,
-    height: 200,
-    backgroundColor: 'rgb(250, 30, 30)',
+    height: 50,
+    backgroundColor: 'rgb(128, 128, 128',
     borderRadius: 100,
   },
   buttonText: {
-    fontWeight: 'bold',
-    fontSize: 30,
+    fontWeight: 'italic',
+    fontSize: 20,
   }
 });
 

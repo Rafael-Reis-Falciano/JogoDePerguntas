@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
-import {Audio} from 'expo-av';
+import { Audio } from 'expo-av';
+import db from '../Config';
+import TelaRanking from '../screens/TelaRanking';
+
 
 class SoundButton extends React.Component {
    playSound = async () => {
@@ -10,11 +13,28 @@ class SoundButton extends React.Component {
     );
   }
 
+  isButtonPressed(cor){
+    var time = new Date().getTime();
+    var atualizarBancoDeDados = db.ref('Equipes/' + cor + '/').update({
+      isButtonPressed: true,
+      time: time,
+    })
+  }
+
+  irParaTelaRanking=()=>{
+    this.props.navigation.navigate('../screens/TelaRanking');
+  }
+
   render() {
     return (
       <TouchableOpacity
         style={[styles.button, {backgroundColor: this.props.color}]}
-        onPress={this.playSound}>
+        onPress={()=>{
+          var cor = this.props.color;
+          this.isButtonPressed(cor);
+          this.playSound();
+          this.irParaTelaRanking();
+        }}>
         <Text
           style={styles.buttonText}>
           P R E S S
@@ -29,7 +49,7 @@ const styles = StyleSheet.create({
     marginTop: 200,
     marginLeft: 75,
     borderWidth: 7,
-    borderColor: 'rgb(180, 20, 20)',
+    borderColor: 'rgb(0, 0, 0)',
     alignItems: 'center',
     justifyContent: 'center',
     width: 200,

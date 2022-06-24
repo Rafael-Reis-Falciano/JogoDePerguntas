@@ -7,7 +7,7 @@ class AppHeader extends React.Component
   {
     return(
       <View style={styles.box}>  
-      <Text style={styles.boxText}> Jogo de Perguntas </Text>
+      <Text style={styles.boxText}> Jogo De Perguntas </Text>
       </View>
     );
   }
@@ -15,6 +15,7 @@ class AppHeader extends React.Component
 
 const styles = StyleSheet.create({
   box: {
+    marginTop: 50,
     borderWidth: 5,
     borderColor: 'rgb(0, 180, 230)',
     alignItems: 'center',
