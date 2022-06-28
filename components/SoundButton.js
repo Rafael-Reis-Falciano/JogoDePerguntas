@@ -19,10 +19,12 @@ class SoundButton extends React.Component {
       isButtonPressed: true,
       time: time,
     })
+    console.log('isButtonPressed');
   }
 
   irParaTelaRanking=()=>{
     this.props.navigation.navigate('../screens/TelaRanking');
+    console.log('irParaTelaRanking');
   }
 
   render() {
@@ -34,6 +36,7 @@ class SoundButton extends React.Component {
           this.isButtonPressed(cor);
           this.playSound();
           this.irParaTelaRanking();
+          console.log('onPress');
         }}>
         <Text
           style={styles.buttonText}>

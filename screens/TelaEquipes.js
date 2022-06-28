@@ -1,20 +1,51 @@
 import * as React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
-import AppHeader from '../components/AppHeader'
+import AppHeader from '../components/AppHeader';
+import db from '../Config';
 
 export default class TelaEquipes extends React.Component
 {
+  constructor()
+  {
+    super();
+    this.state = {
+      blueStatus: true,
+      redStatus: true,
+      greenStatus: true,
+      yellowStatus: true,
+    };
+  }
+
+  componentDidMount()
+  {
+    var equipesRef = db.ref('Equipes/');
+    equipesRef.on('value', (data)=>{
+      var habilitacao = data.val();
+      this.setState({
+        blueStatus: habilitacao.blue.habilitado,
+        redStatus: habilitacao.red.habilitado,
+        greenStatus: habilitacao.green.habilitado,
+        yellowStatus: habilitacao.yellow.habilitado,
+      })
+      console.log(habilitacao);})
+  }
+
   irPraTelaBotao=(cor)=> 
   {
+    var equipesRef = db.ref('Equipes/' + cor);
+    equipesRef.update({
+      habilitado: false,
+    })
     this.props.navigation.navigate('TelaBotao', {color: cor})
   }
 
   render()
   {
-    return /* não estava aceitando o ( do return na linha de baixo */ (
+    return (
       <View> 
         <AppHeader/>
         <TouchableOpacity
+          disabled = {!this.state.blueStatus}
           style={[styles.button, {backgroundColor: 'blue'}]}
           onPress={()=>this.irPraTelaBotao('blue')}>
           <Text style={styles.buttonText}>
@@ -23,6 +54,7 @@ export default class TelaEquipes extends React.Component
         </TouchableOpacity>
 
         <TouchableOpacity
+          disabled = {!this.state.redStatus}
           style={[styles.button, {backgroundColor: 'red'}]}
           onPress={()=>this.irPraTelaBotao('red')}>
           <Text style={styles.buttonText}>
@@ -31,6 +63,7 @@ export default class TelaEquipes extends React.Component
         </TouchableOpacity>
 
         <TouchableOpacity
+          disabled = {!this.state.greenStatus}
           style={[styles.button, {backgroundColor: 'green'}]}
           onPress={()=>this.irPraTelaBotao('green')}>
           <Text style={styles.buttonText}>
@@ -39,6 +72,7 @@ export default class TelaEquipes extends React.Component
         </TouchableOpacity>
 
         <TouchableOpacity
+          disabled = {!this.state.yellowStatus}
           style={[styles.button, {backgroundColor: 'yellow'}]}
           onPress={()=>this.irPraTelaBotao('yellow')}>
           <Text style={styles.buttonText}>

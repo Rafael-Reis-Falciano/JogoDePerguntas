@@ -12,7 +12,7 @@ export default class TelaRanking extends React.Component
     super();
     this.state = {
       ranking: [],
-    }
+    };
   }
 
   showRanking=()=>{
@@ -20,11 +20,13 @@ export default class TelaRanking extends React.Component
     var equipesRef = db.ref('Equipes/');
     equipesRef.on('value', (data)=>{
       var listaEquipes = data.val();
-      console.log(listaEquipes)
+      console.log(listaEquipes);
       for(var equipe in listaEquipes)
       {
+        console.log('for');
         if(listaEquipes[equipe]['isButtonPressed'] === true)
         {
+          console.log('if');
           listaEquipes[equipe]['equipeNome'] = equipe;
           equipes.push(listaEquipes[equipe]);
         }
@@ -38,7 +40,8 @@ export default class TelaRanking extends React.Component
   }
 
   componentDidMount(){
-    this.showRanking;
+    this.showRanking();
+    console.log('componentDidMount');
   }
 
   resetDB=()=>{
@@ -67,13 +70,25 @@ export default class TelaRanking extends React.Component
   {
     return(
       <View style = {{flex: 1}}>
-        <Text>
-
-        </Text>
-
+      <View style = {{flex: 1, alignItens: 'center'}}>
+      {this.state.ranking.map((equipe)=>(
+        <View 
+        style = {{
+          width: 140, 
+          height: 55, 
+          borderWidth: 2,
+          margin: 5,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: equipe.equipeNome,
+          }}>
+        <Text> {equipe.equipeNome.toUpperCase()} </Text>
+        </View>
+      ))}
+      </View>
         <Button title = 'Reiniciar' style = {{width: 100, height: 30}} onPress = {this.resetDB}/>
       </View>
-    )
+    );
   }
 }
 
